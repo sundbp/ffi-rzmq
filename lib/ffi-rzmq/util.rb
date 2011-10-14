@@ -13,7 +13,7 @@ module ZMQ
     # it succeeded.
     #
     def self.resultcode_ok? rc
-      rc >= 0
+      rc.nil? ? false : rc >= 0
     end
 
     # Returns the +errno+ as set by the libzmq library.
@@ -42,6 +42,21 @@ module ZMQ
       [major.read_int, minor.read_int, patch.read_int]
     end
 
+    # Helper method to create a hex string of a byte sequence.
+    #
+    def self.strhex(str)
+      hex_chars = "0123456789ABCDEF"
+      msg_size = str.size
+  
+      result = ""
+      str.each_byte do |num|
+        i1 = num >> 4
+        i2 = num & 15
+        result << hex_chars[i1..i1]
+        result << hex_chars[i2..i2]
+      end    
+      result      
+    end
 
     private
 
