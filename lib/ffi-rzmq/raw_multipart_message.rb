@@ -25,6 +25,7 @@ module ZMQ
     #
     def add(frame)
       msg_frame = convert_frame(frame)
+      return nil if msg_frame.nil?
       @msg_frames << msg_frame
       self
     end
@@ -36,6 +37,7 @@ module ZMQ
     #
     def push(frame)
       msg_frame = convert_frame(frame)
+      return nil if msg_frame.nil?
       @msg_frames.unshift(msg_frame)
       self
     end
@@ -78,7 +80,7 @@ module ZMQ
       when ZMQ::Message
         frame
       else
-        raise ArgumentError.new("Tried to push a of unknown type: #{frame.class}")
+        nil
       end
     end
     
