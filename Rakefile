@@ -1,5 +1,3 @@
-require 'rubygems'
-
 begin
   require 'bones'
 rescue LoadError
