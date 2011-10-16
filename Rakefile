@@ -6,14 +6,20 @@ end
 
 namespace :win do
 
-  desc 'Build and install gem under Windows. Mr Bones just has to break things using tar.'
-  task :install do
+  desc 'Build gem under Windows. Mr Bones just has to break things using tar.'
+  task :gem do
     PKG_PATH = File.join(File.dirname(__FILE__), 'pkg')
     NAME = File.basename(File.dirname(__FILE__))
     rm_rf PKG_PATH
     system "gem build #{NAME}.gemspec"
     mkdir_p PKG_PATH
     mv "#{NAME}-*.gem", PKG_PATH
+  end
+  
+  desc 'Install gem under Windows. Mr Bones just has to break things using tar.'
+  task :install => :gem do
+    PKG_PATH = File.join(File.dirname(__FILE__), 'pkg')
+    NAME = File.basename(File.dirname(__FILE__))
     system "gem install #{PKG_PATH}/#{NAME}-*.gem"
   end
 end
