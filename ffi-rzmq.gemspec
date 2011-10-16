@@ -36,6 +36,7 @@ MRI 1.9.x, Rubinius and JRuby.}
              "examples/v3api/reqrep_poll.rb", 
              "examples/v3api/request_response.rb", 
              "examples/v3api/throughput_measurement.rb", 
+             "ext/README",
              "ffi-rzmq.gemspec", 
              "lib/ffi-rzmq.rb",
              "lib/ffi-rzmq/constants.rb", 
